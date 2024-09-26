@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/common/dock/providers/dock.p.dart';
 import 'package:portfolio/common/dock/models/dock.dart';
+import 'package:portfolio/modules/home/provider/window.dart';
 
 class DesktopDockApp extends ConsumerWidget {
   const DesktopDockApp({super.key, required this.dockApp});
@@ -20,7 +21,9 @@ class DesktopDockApp extends ConsumerWidget {
         width: 50 + (selected ? 5 : 0),
         height: 50 + (selected ? 5 : 0),
         child: RawMaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            ref.read(windowListProvider.notifier).add(dockApp);
+          },
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           padding: EdgeInsets.zero,

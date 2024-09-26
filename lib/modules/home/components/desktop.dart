@@ -1,34 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/modules/home/provider/window.dart';
 
 import '../../../common/window/window.dart';
-import '../../../utils/enums/enum.dart';
 
-class DesktopArea extends StatelessWidget {
+class DesktopArea extends ConsumerWidget {
   const DesktopArea({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final list = ref.watch(windowListProvider);
     return Expanded(
       child: Stack(
         children: [
-          DesktopWindow(
-            onClose: () {},
-            onMinimize: () {},
-            ptype: WindowPositionType.custom,
-            child: const SizedBox(
-              width: double.maxFinite,
-              child: ColoredBox(
-                color: Colors.white,
-                child: Text(
-                  'Desktop Area',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
+          for (final x in list)
+            DesktopWindow(
+              onClose: () {},
+              onMinimize: () {},
+              ptype: x.pType,
+              child: x.app.child,
             ),
-          ),
         ],
       ),
     );

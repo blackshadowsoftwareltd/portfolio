@@ -1,15 +1,19 @@
-// This file is "main.dart"
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart'; 
-part 'dock.freezed.dart'; 
-part 'dock.g.dart';
+import 'package:flutter/material.dart';
 
-@freezed
-class DockApp with _$DockApp {
-  const factory DockApp({
-    required String name,
-    required String path,
-  }) = _DockApp;
+class DockApp {
+  final int id;
+  final String name;
+  final String path;
+  final Widget child;
 
-  factory DockApp.fromJson(Map<String, Object?> json) => _$DockAppFromJson(json);
+  DockApp({required this.name, required this.path, required this.child, required this.id});
+
+  DockApp copyWith({String? name, String? path, Widget? child, int? id}) {
+    return DockApp(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      path: path ?? this.path,
+      child: child ?? this.child,
+    );
+  }
 }
