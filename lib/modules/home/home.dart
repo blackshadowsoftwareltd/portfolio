@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../common/dock/dock.dart';
 import 'components/components.dart';
 import '../../common/titlebar/titlebar.dart';
 
@@ -16,6 +17,8 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 HomeScreenTitleBar(),
+                Spacer(),
+                DesktopDock(),
               ],
             ),
           ),
