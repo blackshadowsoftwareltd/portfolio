@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/common/dock/providers/dock.p.dart';
-import 'package:portfolio/modules/common/dock.dart';
+import 'package:portfolio/common/dock/models/dock.dart';
 
 class DesktopDockApp extends ConsumerWidget {
   const DesktopDockApp({super.key, required this.dockApp});

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../common/dock/dock.dart';
 import 'components/components.dart';
 import '../../common/titlebar/titlebar.dart';
+import 'components/desktop.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 HomeScreenTitleBar(),
-                Spacer(),
+                DesktopArea(),
                 DesktopDock(),
               ],
             ),

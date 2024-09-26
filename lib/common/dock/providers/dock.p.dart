@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../../modules/common/dock.dart';
+import '../models/dock.dart';
 import '../../../utils/constants/path.dart';
 
 part 'dock.p.g.dart';
