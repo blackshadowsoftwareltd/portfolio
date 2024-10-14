@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../modules/home/provider/window.dart';
 import '../../utils/enums/enum.dart';
 
-class DesktopWindow extends StatelessWidget {
+class DesktopWindow extends ConsumerWidget {
   const DesktopWindow(
       {super.key,
       required this.child,
@@ -14,12 +16,23 @@ class DesktopWindow extends StatelessWidget {
   final WindowPositionType ptype;
   final VoidCallback onClose, onMinimize, onMaximize;
   @override
-  Widget build(BuildContext context) {
-    if (ptype == WindowPositionType.full) {
-      return Positioned.fill(
-          child: _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, onMaximize: onMaximize, child: child));
-    }
-    return _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, onMaximize: onMaximize, child: child);
+  Widget build(BuildContext context, WidgetRef ref) {
+    // if (ptype == WindowPositionType.full) {
+    final key_ = ref.read(boardMouseRegionProvider.notifier).globalKey;
+    final RenderBox renderBox = key_.currentContext!.findRenderObject() as RenderBox;
+
+    final h_ = (renderBox.size.height - (ptype.size?.height ?? 0)) * .5;
+    final w_ = (renderBox.size.width - (ptype.size?.width ?? 0)) * .5;
+    return AnimatedPositioned(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.fastOutSlowIn,
+        left: ptype == WindowPositionType.full ? 0 : w_,
+        top: ptype == WindowPositionType.full ? 0 : h_,
+        right: ptype == WindowPositionType.full ? 0 : w_,
+        bottom: ptype == WindowPositionType.full ? 0 : h_,
+        child: _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, onMaximize: onMaximize, child: child));
+
+    // return _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, onMaximize: onMaximize, child: child);
   }
 }
 
@@ -37,13 +50,23 @@ class _Window extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.fastOutSlowIn,
       decoration: BoxDecoration(
         color: Colors.blueGrey.shade900,
         borderRadius: BorderRadius.circular(15),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 5,
+            spreadRadius: .2,
+            offset: Offset(1, 3),
+          ),
+        ],
       ),
-      width: pType.size?.width,
-      height: pType.size?.height,
+      // width: pType.size?.width,
+      // height: pType.size?.height,
       // padding: const EdgeInsets.all(10),
       child: Column(
         children: [

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../common/dock/models/dock.dart';
 import '../../../utils/enums/enum.dart';
@@ -34,10 +35,42 @@ class WindowList extends _$WindowList {
     }
   }
 
-  void remove(DockApp d) {
+  void remove(int id) {
     state = [
       for (final x in state)
-        if (x.app.id != d.id) x
+        if (x.app.id != id) x
     ];
+  }
+
+  void windowMaximize(int id) {
+    state = [
+      for (final x in state)
+        if (x.app.id == id)
+          x.copyWith(pType: x.pType == WindowPositionType.full ? WindowPositionType.custom : WindowPositionType.full)
+    ];
+  }
+}
+
+@riverpod
+class BoardMouseRegion extends _$BoardMouseRegion {
+  final GlobalKey globalKey = GlobalKey();
+
+  @override
+  Offset? build() => null;
+
+  void start(Offset n) {
+    // final RenderBox renderBox = globalKey.currentContext!.findRenderObject() as RenderBox;
+    // state = n - renderBox.localToGlobal(Offset.zero);
+    // print(state);
+  }
+
+  void update(Offset n) {
+    // final RenderBox renderBox = globalKey.currentContext!.findRenderObject() as RenderBox;
+    // state = n - renderBox.localToGlobal(Offset.zero);
+    // print(state);
+  }
+
+  void end(Offset n) {
+    // state = null;
   }
 }

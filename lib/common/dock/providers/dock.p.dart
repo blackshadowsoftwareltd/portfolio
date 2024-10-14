@@ -19,49 +19,49 @@ class DockApps extends _$DockApps {
   List<DockApp> build() {
     return [
       DockApp(
-        id: DateTime.now().millisecondsSinceEpoch + 1,
+        id: 1 + DateTime.now().millisecondsSinceEpoch,
         name: 'Finder',
         path: AssetsImagesPath.appIconFinder,
         child: const FinderWindow(),
       ),
       DockApp(
-        id: DateTime.now().millisecondsSinceEpoch + 2,
+        id: 2 + DateTime.now().millisecondsSinceEpoch,
         name: 'App Store',
         path: AssetsImagesPath.appIconAppStore,
         child: const AppStoreWindow(),
       ),
       DockApp(
-        id: DateTime.now().millisecondsSinceEpoch + 3,
+        id: 3 + DateTime.now().millisecondsSinceEpoch,
         name: 'Settings',
         path: AssetsImagesPath.appIconSettings,
         child: const SettingsWindow(),
       ),
       DockApp(
-        id: DateTime.now().millisecondsSinceEpoch + 4,
+        id: 4 + DateTime.now().millisecondsSinceEpoch,
         name: 'VS Code',
         path: AssetsImagesPath.appIconVscode,
         child: const VSCodeWindow(),
       ),
       DockApp(
-        id: DateTime.now().millisecondsSinceEpoch + 5,
+        id: 5 + DateTime.now().millisecondsSinceEpoch,
         name: 'Calender',
         path: AssetsImagesPath.appIconCalender,
         child: const CalenderWindow(),
       ),
       DockApp(
-        id: DateTime.now().millisecondsSinceEpoch + 6,
+        id: 6 + DateTime.now().millisecondsSinceEpoch,
         name: 'Contact',
         path: AssetsImagesPath.appIconContact,
         child: const ContactWindow(),
       ),
       DockApp(
-        id: DateTime.now().millisecondsSinceEpoch + 7,
+        id: 7 + DateTime.now().millisecondsSinceEpoch,
         name: 'Photos',
         path: AssetsImagesPath.appIconPhotos,
         child: const PhotosWindow(),
       ),
       DockApp(
-        id: DateTime.now().millisecondsSinceEpoch + 8,
+        id: 8 + DateTime.now().millisecondsSinceEpoch,
         name: 'Safari',
         path: AssetsImagesPath.appIconSafari,
         child: const SafaryWindow(),

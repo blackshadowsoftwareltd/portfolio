@@ -10,20 +10,29 @@ class DesktopArea extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final list = ref.watch(windowListProvider.select((v) => v));
+    final notifier = ref.read(windowListProvider.notifier);
     return Expanded(
-      child: Stack(
-        children: [
-          for (final x in list)
-            DesktopWindow(
-              onClose: () {
-                ref.read(windowListProvider.notifier).remove(x.app);
-              },
-              onMaximize: () {},
-              onMinimize: () {},
-              ptype: x.pType,
-              child: x.app.child,
-            ),
-        ],
+      child: MouseRegion(
+        key: ref.watch(boardMouseRegionProvider.notifier).globalKey,
+        // onEnter: (event) => mouseNotifier.start(event.position),
+        // onHover: (event) => mouseNotifier.update(event.position),
+        // onExit: (event) => mouseNotifier.end(event.position),
+        child: Stack(
+          children: [
+            for (final x in list)
+              DesktopWindow(
+                onClose: () {
+                  ref.read(windowListProvider.notifier).remove(x.app.id);
+                },
+                onMaximize: () {
+                  notifier.windowMaximize(x.app.id);
+                },
+                onMinimize: () {},
+                ptype: x.pType,
+                child: x.app.child,
+              ),
+          ],
+        ),
       ),
     );
   }
