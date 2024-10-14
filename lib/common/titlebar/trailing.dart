@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../utils/themes/light.dart';
 import '../buttons/button.dart';
 
@@ -24,19 +24,33 @@ class TitleBarTrailings extends StatelessWidget {
         children: [
           TitleBarButton(
             onPressed: () {},
-            child: const RotationTransition(
-              turns: AlwaysStoppedAnimation(90 / 360),
-              child: Icon(
-                Icons.attachment,
-                size: 20,
-                color: Colors.white,
-              ),
+            child: const Icon(
+              Icons.attach_file_outlined,
+              size: 20,
+              color: Colors.white,
             ),
           ),
           TitleBarButton(
             onPressed: () {},
             child: const Icon(
-              Icons.wifi,
+              // Icons.volume_up_rounded,
+              CupertinoIcons.volume_up,
+              size: 20,
+              color: Colors.white,
+            ),
+          ),
+          TitleBarButton(
+            onPressed: () {},
+            child: const Icon(
+              CupertinoIcons.bluetooth,
+              size: 20,
+              color: Colors.white,
+            ),
+          ),
+          TitleBarButton(
+            onPressed: () {},
+            child: const Icon(
+              CupertinoIcons.wifi,
               size: 20,
               color: Colors.white,
             ),
@@ -45,27 +59,36 @@ class TitleBarTrailings extends StatelessWidget {
             onPressed: () {},
             width: 50,
             child: const Icon(
-              Icons.search,
+              CupertinoIcons.search,
               size: 20,
               color: Colors.white,
             ),
           ),
           TitleBarButton(
             onPressed: () {},
-            child: const Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.toggle_off,
-                  size: 10,
-                  color: Colors.white,
-                ),
-                Icon(
-                  Icons.toggle_on,
-                  size: 10,
-                  color: Colors.white,
-                ),
-              ],
+            child: const SizedBox(
+              width: 30,
+              height: 55,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Icon(
+                      Icons.toggle_off_outlined,
+                      size: 12,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Icon(
+                      Icons.toggle_on_outlined,
+                      size: 12,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           TitleBarButton(

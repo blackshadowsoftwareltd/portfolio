@@ -42,6 +42,16 @@ class TitleBarLeadings extends StatelessWidget {
             width: 50,
             child: Text('View', style: titleMedium),
           ),
+          TitleBarButton(
+            onPressed: () {},
+            width: 50,
+            child: Text('Window', style: titleMedium),
+          ),
+          TitleBarButton(
+            onPressed: () {},
+            width: 50,
+            child: Text('Help', style: titleMedium),
+          ),
         ],
       ),
     ));
