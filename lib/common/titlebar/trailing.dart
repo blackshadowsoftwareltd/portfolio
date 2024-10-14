@@ -95,10 +95,14 @@ class TitleBarTrailings extends StatelessWidget {
             onPressed: () {},
             width: 180,
             child: StreamBuilder<Object>(
-                stream: timeStream(),
-                builder: (context, snapshot) {
-                  return Text(snapshot.data.toString(), style: titleMedium);
-                }),
+              stream: timeStream(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CupertinoActivityIndicator();
+                }
+                return Text(snapshot.data.toString(), style: titleMedium);
+              },
+            ),
           ),
         ],
       ),

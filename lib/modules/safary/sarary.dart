@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class SettingsWindow extends StatelessWidget {
-  const SettingsWindow({super.key});
+class SafaryWindow extends StatelessWidget {
+  const SafaryWindow({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Settings Window'),
+      child: Text('Safary Window'),
     );
   }
 }

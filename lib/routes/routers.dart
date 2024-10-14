@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/modules/home/home.dart';
 
-import '../modules/settings/settings.dart';
-
 final navigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -25,7 +23,7 @@ final GoRouter router = GoRouter(
           builder: (BuildContext context, GoRouterState state) {
             return const HomeScreen();
           },
-          routes: <RouteBase>[
+          routes: const <RouteBase>[
             // GoRoute(
             //     path: 'fc',
             //     parentNavigatorKey: _shellNavigatorKey,
@@ -35,13 +33,13 @@ final GoRouter router = GoRouter(
             //     routes: <RouteBase>[]),
 
             // ? Settings
-            GoRoute(
-              path: 'settings',
-              parentNavigatorKey: _shellNavigatorKey,
-              builder: (BuildContext context, GoRouterState state) {
-                return const SettingsScreen();
-              },
-            ),
+            // GoRoute(
+            //   path: 'settings',
+            //   parentNavigatorKey: _shellNavigatorKey,
+            //   builder: (BuildContext context, GoRouterState state) {
+            //     return const SettingsScreen();
+            //   },
+            // ),
           ],
         ),
       ],

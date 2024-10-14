@@ -51,12 +51,12 @@ class _Window extends StatelessWidget {
                   AppTitleBarButton(
                     color: Colors.red,
                     icon: Icons.close,
-                    onPressed: () {},
+                    onPressed: onClose,
                   ),
                   AppTitleBarButton(
                     color: Colors.yellow.shade700,
                     icon: Icons.remove,
-                    onPressed: () {},
+                    onPressed: onMinimize,
                   ),
                 ],
               ),

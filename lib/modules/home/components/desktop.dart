@@ -9,13 +9,15 @@ class DesktopArea extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final list = ref.watch(windowListProvider);
+    final list = ref.watch(windowListProvider.select((v) => v));
     return Expanded(
       child: Stack(
         children: [
           for (final x in list)
             DesktopWindow(
-              onClose: () {},
+              onClose: () {
+                ref.read(windowListProvider.notifier).remove(x.app);
+              },
               onMinimize: () {},
               ptype: x.pType,
               child: x.app.child,

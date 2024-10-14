@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class SettingsWindow extends StatelessWidget {
-  const SettingsWindow({super.key});
+class PhotosWindow extends StatelessWidget {
+  const PhotosWindow({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Settings Window'),
+      child: Text('Photos Window'),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/modules/home/provider/window.dart';
 import '../../utils/constants/path.dart';
 import '../../utils/themes/light.dart';
 import '../buttons/button.dart';
@@ -22,11 +23,22 @@ class TitleBarLeadings extends StatelessWidget {
               child: Image.asset(AssetsImagesPath.blackshadow),
             ),
           ),
-          TitleBarButton(
-            onPressed: () {},
-            width: 95,
-            child: Text('Black Shadow', style: titleMedium),
-          ),
+          Consumer(builder: (context, state, __) {
+            final first = state.watch(windowListProvider.select((v) => v.lastOrNull));
+            if (first == null) {
+              return TitleBarButton(
+                onPressed: () {},
+                width: 95,
+                child: Text('Black Shadow', style: titleMedium),
+              );
+            }
+
+            return TitleBarButton(
+              onPressed: () {},
+              width: 10 + first.app.name.length * 8,
+              child: Text(first.app.name, style: titleMedium),
+            );
+          }),
           TitleBarButton(
             onPressed: () {},
             width: 50,

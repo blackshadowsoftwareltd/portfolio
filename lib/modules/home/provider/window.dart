@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../../common/dock/models/dock.dart';
 import '../../../utils/enums/enum.dart';
 import '../models/window.dart';
@@ -22,15 +21,23 @@ class WindowList extends _$WindowList {
       app: d,
       pType: WindowPositionType.custom,
     );
+
     final old = state.where((e) => e.app.id == d.id).toList();
     if (old.isEmpty) {
       state = [...state, n];
     } else {
-      [
+      state = [
         for (final x in state)
-          if (x.app.id == d.id) x,
+          if (x.app.id != n.app.id) x,
         ...old,
       ];
     }
+  }
+
+  void remove(DockApp d) {
+    state = [
+      for (final x in state)
+        if (x.app.id != d.id) x
+    ];
   }
 }
