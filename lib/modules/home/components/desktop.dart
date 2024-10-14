@@ -18,6 +18,7 @@ class DesktopArea extends ConsumerWidget {
               onClose: () {
                 ref.read(windowListProvider.notifier).remove(x.app);
               },
+              onMaximize: () {},
               onMinimize: () {},
               ptype: x.pType,
               child: x.app.child,

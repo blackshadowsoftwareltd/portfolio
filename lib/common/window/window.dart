@@ -1,20 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/enums/enum.dart';
 
 class DesktopWindow extends StatelessWidget {
   const DesktopWindow(
-      {super.key, required this.child, required this.ptype, required this.onClose, required this.onMinimize});
+      {super.key,
+      required this.child,
+      required this.ptype,
+      required this.onClose,
+      required this.onMinimize,
+      required this.onMaximize});
   final Widget child;
   final WindowPositionType ptype;
-  final VoidCallback onClose, onMinimize;
+  final VoidCallback onClose, onMinimize, onMaximize;
   @override
   Widget build(BuildContext context) {
     if (ptype == WindowPositionType.full) {
-      return Positioned.fill(child: _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, child: child));
+      return Positioned.fill(
+          child: _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, onMaximize: onMaximize, child: child));
     }
-    return _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, child: child);
+    return _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, onMaximize: onMaximize, child: child);
   }
 }
 
@@ -24,8 +29,9 @@ class _Window extends StatelessWidget {
     required this.pType,
     required this.onClose,
     required this.onMinimize,
+    required this.onMaximize,
   });
-  final VoidCallback onClose, onMinimize;
+  final VoidCallback onClose, onMinimize, onMaximize;
   final Widget child;
   final WindowPositionType pType;
 
@@ -41,27 +47,36 @@ class _Window extends StatelessWidget {
       // padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(3),
-            child: SizedBox(
-              height: 25,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  AppTitleBarButton(
-                    color: Colors.red,
-                    icon: Icons.close,
-                    onPressed: onClose,
-                  ),
-                  AppTitleBarButton(
-                    color: Colors.yellow.shade700,
-                    icon: Icons.remove,
-                    onPressed: onMinimize,
-                  ),
-                ],
+          GestureDetector(
+            onDoubleTap: onMaximize,
+            child: Padding(
+              padding: const EdgeInsets.all(3),
+              child: SizedBox(
+                height: 25,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppTitleBarButton(
+                      color: Colors.red,
+                      icon: Icons.close,
+                      onPressed: onClose,
+                    ),
+                    AppTitleBarButton(
+                      color: Colors.green,
+                      icon: Icons.fullscreen,
+                      onPressed: onMaximize,
+                    ),
+                    AppTitleBarButton(
+                      color: Colors.yellow.shade700,
+                      icon: Icons.remove,
+                      onPressed: onMinimize,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
+          const Divider(color: Colors.white30, height: 0, thickness: .5),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(5, 0, 5, 5),
