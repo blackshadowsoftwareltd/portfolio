@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/utils/extensions/enum.dart';
 import '../../modules/home/provider/window.dart';
 import '../../utils/enums/enum.dart';
 
@@ -23,13 +24,30 @@ class DesktopWindow extends ConsumerWidget {
 
     final h_ = (renderBox.size.height - (ptype.size?.height ?? 0)) * .5;
     final w_ = (renderBox.size.width - (ptype.size?.width ?? 0)) * .5;
+    final widthHalf = -250 + renderBox.size.width * .5;
     return AnimatedPositioned(
         duration: const Duration(milliseconds: 200),
         curve: Curves.fastOutSlowIn,
-        left: ptype == WindowPositionType.full ? 0 : w_,
-        top: ptype == WindowPositionType.full ? 0 : h_,
-        right: ptype == WindowPositionType.full ? 0 : w_,
-        bottom: ptype == WindowPositionType.full ? 0 : h_,
+        left: ptype.isFull
+            ? 0
+            : ptype.isMinimize
+                ? widthHalf
+                : w_,
+        top: ptype.isFull
+            ? 0
+            : ptype.isMinimize
+                ? renderBox.size.height
+                : h_,
+        right: ptype.isFull
+            ? 0
+            : ptype.isMinimize
+                ? widthHalf
+                : w_,
+        bottom: ptype.isFull
+            ? 0
+            : ptype.isMinimize
+                ? -500
+                : h_,
         child: _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, onMaximize: onMaximize, child: child));
 
     // return _Window(pType: ptype, onClose: onClose, onMinimize: onMinimize, onMaximize: onMaximize, child: child);

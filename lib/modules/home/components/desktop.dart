@@ -21,14 +21,10 @@ class DesktopArea extends ConsumerWidget {
           children: [
             for (final x in list)
               DesktopWindow(
-                onClose: () {
-                  ref.read(windowListProvider.notifier).remove(x.app.id);
-                },
-                onMaximize: () {
-                  notifier.windowMaximize(x.app.id);
-                },
-                onMinimize: () {},
-                ptype: x.pType,
+                onClose: () => notifier.remove(x.app.id),
+                onMaximize: () => notifier.windowMaximize(x.app.id),
+                onMinimize: () => notifier.windowMinimize(x.app.id),
+                ptype: x.pType.first,
                 child: x.app.child,
               ),
           ],

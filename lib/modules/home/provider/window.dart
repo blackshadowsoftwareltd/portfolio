@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/utils/extensions/enum.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../common/dock/models/dock.dart';
 import '../../../utils/enums/enum.dart';
@@ -20,7 +21,7 @@ class WindowList extends _$WindowList {
       positionX: null,
       positionY: null,
       app: d,
-      pType: WindowPositionType.custom,
+      pType: [WindowPositionType.custom],
     );
 
     final old = state.where((e) => e.app.id == d.id).toList();
@@ -30,7 +31,7 @@ class WindowList extends _$WindowList {
       state = [
         for (final x in state)
           if (x.app.id != n.app.id) x,
-        ...old,
+        old.first.copyWith(pType: [old.first.pType[1]]),
       ];
     }
   }
@@ -46,7 +47,19 @@ class WindowList extends _$WindowList {
     state = [
       for (final x in state)
         if (x.app.id == id)
-          x.copyWith(pType: x.pType == WindowPositionType.full ? WindowPositionType.custom : WindowPositionType.full)
+          x.copyWith(pType: [
+            if (x.pType.first.isCustom) WindowPositionType.full else WindowPositionType.custom,
+            ...x.pType.skip(1),
+          ])
+        else
+          x
+    ];
+  }
+
+  void windowMinimize(int id) {
+    state = [
+      for (final x in state)
+        if (x.app.id == id) x.copyWith(pType: {WindowPositionType.minimize, ...x.pType}.toList()) else x
     ];
   }
 }

@@ -9,7 +9,7 @@ class WindowConfig {
   final double? positionX;
   final double? positionY;
   final DockApp app;
-  final WindowPositionType pType;
+  final List<WindowPositionType> pType;
 
   WindowConfig({
     required this.width,
@@ -26,7 +26,7 @@ class WindowConfig {
     double? positionX,
     double? positionY,
     DockApp? app,
-    WindowPositionType? pType,
+    List<WindowPositionType>? pType,
   }) {
     return WindowConfig(
       width: width ?? this.width,
