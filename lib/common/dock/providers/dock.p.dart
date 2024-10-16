@@ -46,7 +46,7 @@ class DockApps extends _$DockApps {
         id: 5 + DateTime.now().millisecondsSinceEpoch,
         name: 'Calender',
         path: AssetsImagesPath.appIconCalender,
-        child: const CalenderWindow(),
+        child: CalenderWindow(),
       ),
       DockApp(
         id: 6 + DateTime.now().millisecondsSinceEpoch,

@@ -24,7 +24,7 @@ class DesktopWindow extends ConsumerWidget {
 
     final h_ = (renderBox.size.height - (ptype.size?.height ?? 0)) * .5;
     final w_ = (renderBox.size.width - (ptype.size?.width ?? 0)) * .5;
-    final widthHalf = -250 + renderBox.size.width * .5;
+    final widthHalf = (renderBox.size.width - WindowPositionType.custom.size!.width) * .5;
     return AnimatedPositioned(
         duration: const Duration(milliseconds: 200),
         curve: Curves.fastOutSlowIn,
@@ -154,7 +154,7 @@ class AppTitleBarButton extends StatelessWidget {
             color: color,
             child: Padding(
               padding: const EdgeInsets.all(3),
-              child: child ?? Icon(icon, size: 12, color: Colors.white),
+              child: child ?? Icon(icon, size: 10, color: Colors.white),
             ),
           ),
         ),
