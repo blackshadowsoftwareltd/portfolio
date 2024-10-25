@@ -76,6 +76,10 @@ class DockApps extends _$DockApps {
     }.toList();
   }
 
+  void remove(int id) {
+    state = state.where((e) => e.id != id).toList();
+  }
+
   void hoverStart(DockApp? app) {
     onHovered = app;
     ref.notifyListeners();

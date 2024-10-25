@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/common/dock/providers/dock.p.dart';
+import 'package:portfolio/modules/home/provider/desktop.p.dart';
 import 'package:portfolio/utils/extensions/enum.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../common/dock/models/dock.dart';
@@ -41,6 +43,9 @@ class WindowList extends _$WindowList {
       for (final x in state)
         if (x.app.id != id) x
     ];
+    if (ref.read(desktopAppsProvider.select((v) => v.any((e) => e.id == id)))) {
+      ref.read(dockAppsProvider.notifier).remove(id);
+    }
   }
 
   void windowMaximize(int id) {
