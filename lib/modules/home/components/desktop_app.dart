@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../common/dock/models/dock.dart';
 import '../../../utils/constants/constants.dart';
 import '../provider/desktop.p.dart';
+import '../provider/window.dart';
 
 class DesktopApp extends ConsumerWidget {
   const DesktopApp({super.key, required this.i, required this.app});
@@ -15,7 +16,9 @@ class DesktopApp extends ConsumerWidget {
     final family = (context, i);
     final position = ref.watch(desktopAppPositionProvider(family));
     final child = CupertinoButton(
-      onPressed: () {},
+      onPressed: () {
+        // ref.read(windowListProvider.notifier).add(app);
+      },
       padding: EdgeInsets.zero,
       child: SizedBox(
         width: desktopAppWidth,

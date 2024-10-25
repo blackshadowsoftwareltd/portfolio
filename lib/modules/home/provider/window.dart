@@ -31,7 +31,7 @@ class WindowList extends _$WindowList {
       state = [
         for (final x in state)
           if (x.app.id != n.app.id) x,
-        old.first.copyWith(pType: [old.first.pType[1]]),
+        old.first.copyWith(pType: [old.first.pType.length < 2 ? old.first.pType.first : old.first.pType[1]]),
       ];
     }
   }
