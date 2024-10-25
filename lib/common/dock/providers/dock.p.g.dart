@@ -6,7 +6,7 @@ part of 'dock.p.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dockAppsHash() => r'bb0ec3384bfca278e2c987decc6c68351c3d8643';
+String _$dockAppsHash() => r'2335e5a591c8a696e6b93a94d50e385910ce3a30';
 
 /// See also [DockApps].
 @ProviderFor(DockApps)

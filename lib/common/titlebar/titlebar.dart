@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/extensions/context.dart';
+import '../../utils/constants/constants.dart';
 import 'leading.dart';
 import 'trailing.dart';
 
@@ -10,7 +11,7 @@ class HomeScreenTitleBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: titlebarHeight,
       width: context.screenWidth,
       child: Stack(
         children: [

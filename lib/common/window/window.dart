@@ -19,7 +19,7 @@ class DesktopWindow extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // if (ptype == WindowPositionType.full) {
-    final key_ = ref.read(boardMouseRegionProvider.notifier).globalKey;
+    final key_ = ref.read(desktopMouseRegionProvider.notifier).globalKey;
     final RenderBox renderBox = key_.currentContext!.findRenderObject() as RenderBox;
 
     final h_ = (renderBox.size.height - (ptype.size?.height ?? 0)) * .5;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../common/dock/dock.dart';
 import 'components/components.dart';
 import '../../common/titlebar/titlebar.dart';
@@ -13,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return const Scaffold(
       body: Stack(
         children: [
-          HomeBackgroun(),
+          HomeBackground(),
           Positioned.fill(
             child: Column(
               children: [

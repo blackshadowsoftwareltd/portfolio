@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/modules/home/components/desktop_app.dart';
+import 'package:portfolio/modules/home/provider/desktop.p.dart';
 import 'package:portfolio/modules/home/provider/window.dart';
 
 import '../../../common/window/window.dart';
@@ -10,10 +12,11 @@ class DesktopArea extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final list = ref.watch(windowListProvider.select((v) => v));
+    final desktopApps = ref.watch(desktopAppsProvider);
     final notifier = ref.read(windowListProvider.notifier);
     return Expanded(
       child: MouseRegion(
-        key: ref.watch(boardMouseRegionProvider.notifier).globalKey,
+        key: ref.watch(desktopMouseRegionProvider.notifier).globalKey,
         // onEnter: (event) => mouseNotifier.start(event.position),
         // onHover: (event) => mouseNotifier.update(event.position),
         // onExit: (event) => mouseNotifier.end(event.position),
@@ -26,6 +29,11 @@ class DesktopArea extends ConsumerWidget {
                 onMinimize: () => notifier.windowMinimize(x.app.id),
                 ptype: x.pType.first,
                 child: x.app.child,
+              ),
+            for (var i = 0; i < desktopApps.length; i++)
+              DesktopApp(
+                i: i + 1,
+                app: desktopApps[i],
               ),
           ],
         ),

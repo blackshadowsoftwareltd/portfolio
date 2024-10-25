@@ -65,7 +65,7 @@ class WindowList extends _$WindowList {
 }
 
 @riverpod
-class BoardMouseRegion extends _$BoardMouseRegion {
+class DesktopMouseRegion extends _$DesktopMouseRegion {
   final GlobalKey globalKey = GlobalKey();
 
   @override

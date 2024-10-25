@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../utils/constants/constants.dart';
 import 'dock_app.dart';
 import 'providers/dock.p.dart';
 
@@ -11,7 +12,7 @@ class DesktopDock extends ConsumerWidget {
     final dockApps = ref.watch(dockAppsProvider);
     return Container(
       // width: 500,
-      height: 60,
+      height: dockHeight,
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: Colors.white10,
