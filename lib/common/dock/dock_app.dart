@@ -12,25 +12,35 @@ class DesktopDockApp extends ConsumerWidget {
     final _ = ref.watch(dockAppsProvider);
     final notifier = ref.read(dockAppsProvider.notifier);
     final selected = notifier.onHovered == dockApp;
-    return MouseRegion(
-      onEnter: (_) => notifier.hoverStart(dockApp),
-      onExit: (_) => notifier.hoverStart(null),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        margin: EdgeInsets.only(left: 5, top: selected ? 0 : 5, right: 5, bottom: 5),
-        width: 50 + (selected ? 5 : 0),
-        height: 50 + (selected ? 5 : 0),
-        child: RawMaterialButton(
-          onPressed: () {
-            ref.read(windowListProvider.notifier).add(dockApp);
-          },
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          padding: EdgeInsets.zero,
-          child: Image.asset(
-            dockApp.path,
-            width: 60,
-            height: 60,
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 500),
+      builder: (BuildContext context, double scal, Widget? child) {
+        return Transform.scale(
+          scale: scal,
+          child: FittedBox(child: child),
+        );
+      },
+      child: MouseRegion(
+        onEnter: (_) => notifier.hoverStart(dockApp),
+        onExit: (_) => notifier.hoverStart(null),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          margin: EdgeInsets.only(left: 5, top: selected ? 0 : 5, right: 5, bottom: 5),
+          width: 50 + (selected ? 5 : 0),
+          height: 50 + (selected ? 5 : 0),
+          child: RawMaterialButton(
+            onPressed: () {
+              ref.read(windowListProvider.notifier).add(dockApp);
+            },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            padding: EdgeInsets.zero,
+            child: Image.asset(
+              dockApp.path,
+              width: 60,
+              height: 60,
+            ),
           ),
         ),
       ),

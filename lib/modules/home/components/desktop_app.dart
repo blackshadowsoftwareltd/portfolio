@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/common/dock/providers/dock.p.dart';
 import '../../../common/dock/models/dock.dart';
 import '../../../utils/constants/constants.dart';
 import '../provider/desktop.p.dart';
@@ -17,7 +18,8 @@ class DesktopApp extends ConsumerWidget {
     final position = ref.watch(desktopAppPositionProvider(family));
     final child = CupertinoButton(
       onPressed: () {
-        // ref.read(windowListProvider.notifier).add(app);
+        ref.read(dockAppsProvider.notifier).add(app);
+        ref.read(windowListProvider.notifier).add(app);
       },
       padding: EdgeInsets.zero,
       child: SizedBox(

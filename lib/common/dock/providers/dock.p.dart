@@ -69,6 +69,13 @@ class DockApps extends _$DockApps {
     ];
   }
 
+  void add(DockApp app) {
+    state = {
+      ...state,
+      app,
+    }.toList();
+  }
+
   void hoverStart(DockApp? app) {
     onHovered = app;
     ref.notifyListeners();
